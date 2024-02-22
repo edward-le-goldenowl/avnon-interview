@@ -1,0 +1,67 @@
+<h2 mat-dialog-title>Question Form</h2>
+<mat-dialog-content class="mat-typography">
+  <form class="form" (ngSubmit)="submitQuestion()">
+    <mat-form-field class="full-width">
+      <mat-label>Question Type</mat-label>
+      <mat-select
+        id="questionTypeSelected"
+        [(ngModel)]="questionTypeSelected"
+        [ngModelOptions]="{ standalone: true }"
+      >
+        <div *ngFor="let questionType of questionTypes()">
+          <mat-option value="{{ questionType.value }}">{{
+            questionType.label
+          }}</mat-option>
+        </div>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="full-width">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Type your question here</mat-label>
+        <input
+          matInput
+          id="question"
+          [ngModel]="question()"
+          (ngModelChange)="question.set($event)"
+          [ngModelOptions]="{ standalone: true }"
+          class="input-field"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="answer-options">
+      <div *ngFor="let answer of answers(); let i = index">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Answer {{ i + 1 }}</mat-label>
+          <input
+            matInput
+            id="{{ answer }}"
+            [(ngModel)]="answers()[i]"
+            [ngModelOptions]="{ standalone: true }"
+            class="input-field"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <div *ngIf="questionTypeSelected === 'checkbox'">
+      <div (click)="addAnswer()" class="link-button">+ Add Another Answer</div>
+    </div>
+    <section>
+      <mat-checkbox>Allow user to specify their own answer</mat-checkbox>
+    </section>
+    <section>
+      <mat-checkbox>This field is required</mat-checkbox>
+    </section>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button
+    mat-button
+    [mat-dialog-close]="true"
+    cdkFocusInitial
+    (click)="submitQuestion()"
+  >
+    Submit
+  </button>
+</mat-dialog-actions>

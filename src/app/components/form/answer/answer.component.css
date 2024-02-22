@@ -1,0 +1,20 @@
+.answer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.item {
+  margin-bottom: 3rem;
+}

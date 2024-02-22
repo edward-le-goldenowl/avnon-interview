@@ -1,0 +1,28 @@
+<div class="answer">
+  <div class="container">
+    <h1>My Answers</h1>
+    <div *ngFor="let answer of answers; let answersIdx = index" class="item">
+      <div *ngIf="!checkNullAnswer(answer)">
+        <h2>{{ answer.question }}</h2>
+        <div *ngIf="answer.answerType === 'paragraph'">
+          <mat-label matInput>{{ answer.my_answer.text }}</mat-label>
+        </div>
+        <div *ngIf="answer.answerType === 'checkbox'">
+          <div
+            *ngFor="
+              let answerCheckBox of answer.my_answer.checkboxes;
+              let answerIdx = index
+            "
+          >
+            <mat-label *ngIf="answerCheckBox.checked">
+              {{ answerCheckBox.label }}
+            </mat-label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button mat-fab extended (click)="navigateToBuilderForm()">
+      Back to Form Builder
+    </button>
+  </div>
+</div>

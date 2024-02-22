@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src/**/*.ts",
+    "src/app/components/form/builder/builder.component.js",
+    "src/app/components/form/dialog/dialog.component.js"
+  ],
+  "compilerOptions": {
+    "types": ["jest", "node"]
+  }
+}

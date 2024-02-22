@@ -1,0 +1,36 @@
+<div class="builder">
+  <div class="container">
+    <h1>Questions</h1>
+    <form class="form">
+      <div *ngFor="let question of questions; let questionIdx = index">
+        <h2>{{ question.question }}</h2>
+        <div *ngIf="question.answerType === 'paragraph'">
+          <mat-form-field class="full-width">
+            <textarea
+              matInput
+              [ngModel]="myAnswerText()"
+              (ngModelChange)="onTextChange($event, question)"
+              [ngModelOptions]="{ standalone: true }"
+            ></textarea>
+          </mat-form-field>
+        </div>
+        <div *ngIf="question.answerType === 'checkbox'">
+          <div *ngFor="let answer of question.answer; let answerIdx = index">
+            <mat-checkbox
+              (change)="onCheckboxChange($event, question, answer, answerIdx)"
+            >
+              {{ answer }}
+            </mat-checkbox>
+          </div>
+        </div>
+      </div>
+      <div>{{ a() }}</div>
+    </form>
+    <div class="container-btn">
+      <button mat-fab extended (click)="openPopUp()">Add Question</button>
+      <button mat-fab extended (click)="navigateToReviewAnswerForm()">
+        Review my answers >
+      </button>
+    </div>
+  </div>
+</div>
