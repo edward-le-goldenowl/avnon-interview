@@ -28,7 +28,12 @@
     </form>
     <div class="container-btn">
       <button mat-fab extended (click)="openPopUp()">Add Question</button>
-      <button mat-fab extended (click)="navigateToReviewAnswerForm()">
+      <button
+        *ngIf="myAnswers.length > 0"
+        mat-fab
+        extended
+        (click)="navigateToReviewAnswerForm()"
+      >
         Review my answers >
       </button>
     </div>
